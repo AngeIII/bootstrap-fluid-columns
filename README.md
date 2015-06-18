@@ -1,6 +1,9 @@
 # bootstrap-fluid-columns
 Add an ability to bootstrap to allow create layouts for 3, 5, 6, 7, 8, 9, 10, 11 equals columns.
 
+# Version
+Under development, V: 0.0
+
 # Usage
 Same as default bootstrap grid work: class col-[type]-size:
 Types:
