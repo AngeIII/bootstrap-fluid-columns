@@ -1,0 +1,139 @@
+@import (reference) "../../modules/bootstrap/less/variables.less";
+
+.f-make-grid-columns() {
+  // Common styles for all sizes of grid columns, widths 1-12
+  .col(@index-a, @index-b) { // initial
+    @item: ~".col-xs-@{index-a}_@{index-b}, .col-sm-@{index-a}_@{index-b}, .col-md-@{index-a}_@{index-b}, .col-lg-@{index-a}_@{index-b}";
+    .col(@index-a, (@index-b + 1), @item);
+  }
+  .col(@index-a, @index-b, @list) when (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a < @index-b) { // general; "=<" isn't a typo
+    @item: ~".col-xs-@{index-a}_@{index-b}, .col-sm-@{index-a}_@{index-b}, .col-md-@{index-a}_@{index-b}, .col-lg-@{index-a}_@{index-b}";
+    .col((@index-a + 1), (@index-b), ~"@{list}, @{item}");
+  }
+  .col(@index-a, @index-b, @list) when (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a = @index-b) { // general; "=<" isn't a typo
+    @item: ~".col-xs-@{index-a}_@{index-b}, .col-sm-@{index-a}_@{index-b}, .col-md-@{index-a}_@{index-b}, .col-lg-@{index-a}_@{index-b}";
+    .col(1, (@index-b + 1), ~"@{list}, @{item}");
+  }
+  .col(@index-a, @index-b, @list) when (@index-b > @grid-columns) { // terminal
+    @{list} {
+      position: relative;
+      // Prevent columns from collapsing when empty
+      min-height: 1px;
+      // Inner gutter via padding
+      padding-left:  ceil((@grid-gutter-width / 2));
+      padding-right: floor((@grid-gutter-width / 2));
+    }
+  }
+  .col(1,1); // kickstart it
+}
+
+.f-float-grid-columns(@class) {
+  .col(@index-a, @index-b) { // initial
+    @item: ~".col-@{class}-@{index-a}_@{index-b}";
+    .col(@index-a, (@index-b + 1), @item);
+  }
+  .col(@index-a, @index-b, @list) when (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a < @index-b) { // general
+    @item: ~".col-@{class}-@{index-a}_@{index-b}";
+    .col((@index-a + 1), @index-b, ~"@{list}, @{item}");
+  }
+  .col(@index-a, @index-b, @list) when (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a = @index-b) { // general
+    @item: ~".col-@{class}-@{index-a}_@{index-b}";
+    .col(1, (@index-b + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @index-b, @list) when (@index-b > @grid-columns) { // terminal
+    @{list} {
+      float: left;
+    }
+  }
+  .col(1,1); // kickstart it
+}
+
+// Basic looping in LESS
+.f-loop-grid-columns(@class) {
+  .col(@index-a, @index-b, @type) { // initial
+    .col(@index-a, @index-b, @class, @type);
+  }
+  .col(@index-a, @index-b, @class, @type) when (@type = width) and (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a < @index-b) {
+    .col-@{class}-@{index-a}_@{index-b} {
+      width: percentage((@index-a / @index-b));
+    }
+    .col((@index-a + 1), @index-b, @class, @type);
+  }
+  .col(@index-a, @index-b, @class, @type) when (@type = width) and (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a = @index-b) {
+    .col-@{class}-@{index-a}_@{index-b} {
+      width: percentage((@index-a / @index-b));
+    }
+    .col(1, (@index-b + 1), @class, @type);
+  }
+  .col(@index-a, @index-b, @class, @type) when (@type = push) and (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a < @index-b) {
+    .col-@{class}-@{type}-@{index-a}_@{index-b} {
+      left: percentage((@index-a / @index-b));
+    }
+    .col((@index-a + 1), @index-b, @class, @type);
+  }
+  .col(@index-a, @index-b, @class, @type) when (@type = push) and (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a = @index-b) {
+    .col-@{class}-@{type}-@{index-a}_@{index-b} {
+      left: percentage((@index-a / @index-b));
+    }
+    .col(1, (@index-b + 1), @class, @type);
+  }
+  .col(@index-a, @index-b, @class, @type) when (@type = pull) and (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a < @index-b) {
+    .col-@{class}-@{type}-@{index-a}_@{index-b} {
+      right: percentage((@index-a / @index-b));
+    }
+    .col((@index-a + 1), @index-b, @class, @type);
+  }
+  .col(@index-a, @index-b, @class, @type) when (@type = pull) and (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a = @index-b) {
+    .col-@{class}-@{type}-@{index-a}_@{index-b} {
+      right: percentage((@index-a / @index-b));
+    }
+    .col(1, (@index-b + 1), @class, @type);
+  }
+  .col(@index-a, @index-b, @class, @type) when (@type = offset) and (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a < @index-b) {
+    .col-@{class}-@{type}-@{index-a}_@{index-b} {
+      margin-left: percentage((@index-a / @index-b));
+    }
+    .col((@index-a + 1), @index-b, @class, @type);
+  }
+  .col(@index-a, @index-b, @class, @type) when (@type = offset) and (@index-a =< @grid-columns) and (@index-b =< @grid-columns) and (@index-a = @index-b) {
+    .col-@{class}-@{type}-@{index-a}_@{index-b} {
+      margin-left: percentage((@index-a / @index-b));
+    }
+    .col(1, (@index-b + 1), @class, @type);
+  }
+//  .col(@index-a, @index-b, @class, @type) when (@type = push) and (@index > 0) {
+//    .col-@{class}-push-@{index-a} {
+//      left: percentage((@index-a / @index-b));
+//    }
+//  }
+//  .col(@index-a, @index-b, @class, @type) when (@type = push) and (@index = 0) {
+//    .col-@{class}-push-0 {
+//      left: auto;
+//    }
+//  }
+//  .col(@index-a, @index-b, @class, @type) when (@type = pull) and (@index > 0) {
+//    .col-@{class}-pull-@{index-a} {
+//      right: percentage((@index-a / @index-b));
+//    }
+//  }
+//  .col(@index-a, @index-b, @class, @type) when (@type = pull) and (@index = 0) {
+//    .col-@{class}-pull-0 {
+//      right: auto;
+//    }
+//  }
+//  .col(@index-a, @index-b, @class, @type) when (@type = offset) {
+//    .col-@{class}-offset-@{index-a} {
+//      margin-left: percentage((@index-a / @index-b));
+//    }
+//  }
+  .col(1, 1, width);
+  .col(1, 1, pull);
+  .col(1, 1, push);
+  .col(1, 1, offset);
+}
+
+// Create grid for specific class
+.f-make-grid(@class) {
+  .f-float-grid-columns(@class);
+  .f-loop-grid-columns(@class);
+}
