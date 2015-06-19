@@ -37,6 +37,11 @@ Sizes:
 
     Include bootstrap library in your project and include fluid-grid.min.css. Then you are free to use combinations for standard bootstrap classes and fluid layout classes.
     For example if you want to create 5 columns grid just use *_5 classes ( col-sm-1_5 (20%), col-sm-2_5(40%), col-sm-3_5(60%) and etc. ).
+    
+## Copyright and license
+
+Copyright 2015 Pavel I, thq.lv.
+Code released under [the MIT license](https://github.com/AngeIII/bootstrap-fluid-columns/blob/master/LICENSE).
 
 # Author
     Pavel Ivanov
