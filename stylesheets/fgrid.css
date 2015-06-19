@@ -1,0 +1,116 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: top;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", "helvetica", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(39,65,90,1);
+}
+
+.f-container h4 {
+  margin-bottom: 12px;
+  font-size: 1.25em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.f-container h5 {
+  font-size: 1.75em;
+  word-break: break-all;
+}
+
+.f-container p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  color: rgba(39,65,90,.9);
+  font-size: 1.25em;
+  line-height: 1.625em;
+}
+
+.f-container strong {
+  color: rgba(39,65,90,1);
+  font-weight: 600;
+}
+.f-container  .lift {
+  position: relative;
+}
+
+.f-container  .pricing-plan {
+  background: white;
+  vertical-align: baseline;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.f-container  .pricing-plan h4 {
+  padding: 18px 0 15px;
+  margin: 0 0 30px;
+  background: #00a1ff;
+  color: white;
+}
+
+.f-container .pricing-plan sup {
+  position: relative;
+  top: 9px;
+}
+
+.f-container sup {
+  vertical-align: top;
+}
+
+.f-container .pricing-plan .plan-price {
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: -3px;
+}
+
+.f-container .pricing-plan sub {
+  vertical-align: bottom;
+  position: relative;
+  bottom: .875em;
+}
+
+.f-container .pricing-plan .early-adopter-price {
+  color: #0091e5;
+}
+
+.f-container small,.f-container  del {
+  color: rgba(39,65,90,.5);
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.f-container {
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  border-radius: 0.3rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  color: #567482;
+  word-wrap: normal;
+  background-color: #f3f6fa;
+  border: solid 1px #dce6f0;
+  text-align: center;
+}
